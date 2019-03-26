@@ -1,4 +1,3 @@
-
 console.log('this is loaded');
 
 exports.spotify = {
@@ -6,7 +5,7 @@ exports.spotify = {
   secret: process.env.SPOTIFY_SECRET
 };
 
+//  var spotify = new Spotify(keys.spotify);
+// exports.omdb ={
+// 	apikey: process.env.OMBDB_APIKEY
 
-exports.omdb = {
-	apiKey: process.env.OMDB_APIKEY
-}
