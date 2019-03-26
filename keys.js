@@ -7,4 +7,6 @@ exports.spotify = {
 };
 
 
- var spotify = new Spotify(keys.spotify);
+exports.omdb = {
+	apiKey: process.env.OMDB_APIKEY
+}
