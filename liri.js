@@ -2,9 +2,9 @@ require("dotenv").config();
 
 const keys = require('./keys.js')
 const Spotify = require('node-spotify-api')
-const omdb = require('omdb');
 const request = require('request');
-const fs = require('fs')
+const omdb = require('omdb');
+const fs = require('fs');
 
 const spotify = new Spotify(keys.spotify);
 // var client = new Twitter(keys.twitter);
@@ -54,39 +54,29 @@ function spotify_this(input) {
     });
 };
 
-function movie_this(input) {
-    var movie;
-    if (input === "") {
-        movie = 'Mr Nobody';
-    } else {
-        movie = input;
-    }
-    request('http://www.omdbapi.com/?i=tt3896198&apikey=b25eb0d4=' + movie, function (error, response, body) {
-        let movieData = JSON.parse(body);
-        console.log(error, response.statusCode);
-        if (!error && response.statusCode == 200 && movieData.Response == "True") {
-            const filterer = (rating) => rating.Source == "Rotten Tomatoes";
-            // console.log(movieData);
-            let {
-                Title,
-                Year,
-                Rated,
-                Country,
-                Language,
-                Plot,
-                Actors
-            } = movieData
-            console.log(Title)
-            console.log(Year)
-            console.log(Rated)
-            console.log(movieData.Ratings.filter(filterer)[0].Value)
-            console.log(Country)
-            console.log(Language)
-            console.log(Plot)
-            console.log(Actors)
+
+function movie_this(inputs) {
+
+    var queryUrl = "http://www.omdbapi.com/?t=" + inputs + "&y=&plot=short&apikey=b25eb0d4";
+
+    request(queryUrl, function(error, response, body) {
+        if (!inputs){
+            inputs = 'Mr Nobody';
+        }
+        if (!error && response.statusCode === 200) {
+
+            console.log("Title: " + JSON.parse(body).Title);
+            console.log("Release Year: " + JSON.parse(body).Year);
+            console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
+            console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value);
+            console.log("Country: " + JSON.parse(body).Country);
+            console.log("Language: " + JSON.parse(body).Language);
+            console.log("Plot: " + JSON.parse(body).Plot);
+            console.log("Actors: " + JSON.parse(body).Actors);
         }
     });
 };
+
 
 function grabText() {
     fs.readFile("random.txt", "utf8", function (error, data) {

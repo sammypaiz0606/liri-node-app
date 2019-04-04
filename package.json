@@ -8,7 +8,7 @@
     "dotenv": "^7.0.0",
     "keystone": "^4.0.0",
     "node": "^11.12.0",
-    "node-spotify-api": "^1.0.7"
+    "node-spotify-api": "^1.0.7",
   },
   "devDependencies": {},
   "scripts": {

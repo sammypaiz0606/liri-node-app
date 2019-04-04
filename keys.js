@@ -6,7 +6,8 @@ exports.spotify = {
   secret: process.env.SPOTIFY_SECRET
 };
 
-//  var spotify = new Spotify(keys.spotify);
-// exports.omdb ={
-// 	apikey: process.env.OMBDB_APIKEY
+ // var spotify = new Spotify(keys.spotify);
+exports.omdb = {
+	apikey: process.env.OMBDB_APIKEY
 
+}
